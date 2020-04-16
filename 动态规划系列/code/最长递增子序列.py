@@ -24,7 +24,7 @@ from typing import List
 
 def longest_increasing_subsequence(num_list: List[int]) -> int:
     """
-    最长递增子序列
+    动态规划解法
     :param num_list: 无序整数列表
     :return: 子序列长度
     """
@@ -37,11 +37,34 @@ def longest_increasing_subsequence(num_list: List[int]) -> int:
 
     return max(dp)
 
+def longest_increasing_subsequence_2(num_list: List[int]) -> int:
+    """
+    动态规划 + 二分查找
+    :param num_list: 无序整数列表
+    :return: 子序列长度
+    """
+    tails, res = [0] * len(num_list), 0
+    for n in num_list:
+        i, j = 0, res
+        while i < j:
+            m = (i + j) // 2
+            if tails[m] < n:
+                i = m + 1  # 如果要求非严格递增，将此行 '<' 改为 '<=' 即可。
+            else:
+                j = m
+
+        tails[i] = n
+        if j == res:
+            res += 1
+    return res
+
+
 if __name__ == '__main__':
     num = list(range(10))
     random.shuffle(num)
     print(num)
     print(longest_increasing_subsequence(num))
+    print(longest_increasing_subsequence_2(num))
 
 
 
