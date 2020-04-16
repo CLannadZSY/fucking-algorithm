@@ -15,6 +15,8 @@
 注意「子序列」和「子串」这两个名词的区别，
 子串一定是连续的，而子序列不一定是连续的。
 
+LeetCode: https://leetcode-cn.com/problems/longest-increasing-subsequence/
+
 """
 import random
 from typing import List
